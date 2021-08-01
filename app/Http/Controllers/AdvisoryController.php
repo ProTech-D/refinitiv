@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Advisory;
+
 
 class AdvisoryController extends Controller
 {
@@ -14,5 +16,9 @@ class AdvisoryController extends Controller
         //
     }
 
-    //
+    public function showAll()
+    {
+        return response()->json(Advisory::get()->toArray());
+    }
+ 
 }

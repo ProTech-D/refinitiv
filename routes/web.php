@@ -17,7 +17,7 @@ header('Access-Control-Allow-Credentials: true');
 */
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+  return $router->app->version();
 });
 
 $router->group(['prefix' => 'api'], function () use ($router) {
@@ -28,5 +28,6 @@ $router->group(['prefix' => 'api'], function () use ($router) {
   $router->get('filter/{TRBC}/{country}/{name}',  ['uses' => 'BenchmarkController@filterByIndCountry']);
   $router->get('company/{name}',  ['uses' => 'BenchmarkController@showByCompany']);
   $router->get('companyid/{id}',  ['uses' => 'BenchmarkController@rankCompany']);
-
+  $router->get('getadvisory',  ['uses' => 'AdvisoryController@showAll']);
+  $router->get('getbyname/{name}',  ['uses' => 'AdvisoryController@getByname']);
 });
