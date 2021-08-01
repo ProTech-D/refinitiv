@@ -15,6 +15,13 @@ class CreateBenchmarkTable extends Migration
     {
         Schema::create('benchmark', function (Blueprint $table) {
             $table->id();
+            $table->string("Instrument");
+            $table->string("RIC");
+            $table->double("EsgScore");
+            $table->integer("TRBC");
+            $table->string("Country");
+            $table->string("Industry");
+
             $table->timestamps();
         });
     }
