@@ -23,8 +23,24 @@ class BenchmarkController extends Controller
     public function showIndustry()
     {
         return response()->json(Benchmark::select('trbc','industry')->distinct()->get());
+    } 
+    public function showCountries()
+    {
+        return response()->json(Benchmark::select('country')->distinct()->get());
     }
 
+    public function filterByIndCountry($TRBC,$country,$name=null)
+    {
+        $list = Benchmark::limit(5);
+        if($TRBC && $TRBC!=null && $TRBC!=''&& $TRBC!=0)
+            $list =$list->where('trbc', $TRBC);
+        if($country && $country!=null && $country!=''&& $country!='null')
+            $list =$list->where('country', $country);
+         if($name && $name!=null && $name!=0)
+            $list =$list->where('instrument','like', "%".$name."%");
+        $list =$list->get()->toArray();
+        return response()->json($list);
+    }
     public function showByInd($TRBC)
     {
         return response()->json(Benchmark::offset(10)->limit(5)->where('trbc', $TRBC)->get());
